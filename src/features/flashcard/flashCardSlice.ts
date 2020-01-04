@@ -46,6 +46,7 @@ const flashCards = createSlice({
     createFlashCard: (state, action) => {
       action.payload.id = state.cards.length + 1
       state.cards.push(action.payload) // Flux Standard Actions convention suggests we always call it payload. With RTK you have no choice.
+      state.current = state.cards.length - 1 // set the new card visible immediately
     },
     updateFlashCard: (state, action) => {
       const { index, updatedCard } = action.payload

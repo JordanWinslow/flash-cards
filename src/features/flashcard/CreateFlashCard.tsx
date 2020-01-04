@@ -20,7 +20,7 @@ import { Center } from "../../components/Center"
 import CheckCircleIcon from "@material-ui/icons/CheckCircle"
 
 /* 
-MANUALLY OVERRIDING THE STYLES IS LESS VERBOSE BUT REQUIRES PASSING IN InputProps & InputLabelProps:
+MANUALLY OVERRIDING THE STYLES IS LESS VERBOSE BUT REQUIRES PASSING IN InputProps & InputLabelProps AND WILL NOT ALLOW FINE-TUNING:
 
 const styles = {
   card: {
@@ -46,7 +46,9 @@ const useStyles = makeStyles({
     Overrides are not nearly as trivial as they should be and by the time you master
     their naming conventions you could have already made your own design system!
     */
-    //HEADER CONTENT OF FLASHCARD
+    "& .MuiPaper-elevation1": {
+      boxShadow: "0 4px 20px rgba(0,0,0, 0.5)"
+    }, //HEADER CONTENT OF FLASHCARD
     "& .MuiCardHeader-root": {
       background:
         "radial-gradient(circle at 17% 1%, rgba(198, 198, 198,0.03) 0%, rgba(198, 198, 198,0.03) 50%,rgba(42, 42, 42,0.03) 50%, rgba(42, 42, 42,0.03) 100%),radial-gradient(circle at 8% 81%, rgba(253, 253, 253,0.03) 0%, rgba(253, 253, 253,0.03) 50%,rgba(36, 36, 36,0.03) 50%, rgba(36, 36, 36,0.03) 100%),radial-gradient(circle at 83% 29%, rgba(164, 164, 164,0.03) 0%, rgba(164, 164, 164,0.03) 50%,rgba(60, 60, 60,0.03) 50%, rgba(60, 60, 60,0.03) 100%),radial-gradient(circle at 96% 62%, rgba(170, 170, 170,0.03) 0%, rgba(170, 170, 170,0.03) 50%,rgba(169, 169, 169,0.03) 50%, rgba(169, 169, 169,0.03) 100%),linear-gradient(338deg, rgb(2, 141, 213),rgb(5, 172, 81))"
