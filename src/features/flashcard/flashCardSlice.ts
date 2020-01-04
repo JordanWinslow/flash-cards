@@ -10,8 +10,15 @@ const flashCards = createSlice({
       {
         // State is an Array of Flashcards With a Front and Back. The id is the array index
         id: "0",
-        front: { title: "Question 1", content: "Front of Flashcard" },
-        back: { title: "Answer 1", content: "Back of Flashcard" }
+        front: {
+          title: "Question 1",
+          content: "What is Redux Toolkit?"
+        },
+        back: {
+          title: "",
+          content:
+            "Redux Toolkit is the official, opinionated, batteries-included toolset for efficient Redux development and is intended to be the standard way to write Redux logic."
+        }
       },
       {
         // State is an Array of Flashcards With a Front and Back. The id is the array index
