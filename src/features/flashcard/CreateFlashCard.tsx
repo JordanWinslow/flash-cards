@@ -11,10 +11,16 @@ import {
   CardContent,
   CardHeader,
   IconButton,
-  Grid
+  Grid,
+  TextField,
+  makeStyles
 } from "@material-ui/core"
+
 import { Center } from "../../components/Center"
 import CheckCircleIcon from "@material-ui/icons/CheckCircle"
+
+/* 
+MANUALLY OVERRIDING THE STYLES IS LESS VERBOSE BUT REQUIRES PASSING IN InputProps & InputLabelProps:
 
 const styles = {
   card: {
@@ -28,7 +34,55 @@ const styles = {
         "radial-gradient(circle at 17% 1%, rgba(198, 198, 198,0.03) 0%, rgba(198, 198, 198,0.03) 50%,rgba(42, 42, 42,0.03) 50%, rgba(42, 42, 42,0.03) 100%),radial-gradient(circle at 8% 81%, rgba(253, 253, 253,0.03) 0%, rgba(253, 253, 253,0.03) 50%,rgba(36, 36, 36,0.03) 50%, rgba(36, 36, 36,0.03) 100%),radial-gradient(circle at 83% 29%, rgba(164, 164, 164,0.03) 0%, rgba(164, 164, 164,0.03) 50%,rgba(60, 60, 60,0.03) 50%, rgba(60, 60, 60,0.03) 100%),radial-gradient(circle at 96% 62%, rgba(170, 170, 170,0.03) 0%, rgba(170, 170, 170,0.03) 50%,rgba(169, 169, 169,0.03) 50%, rgba(169, 169, 169,0.03) 100%),linear-gradient(338deg, rgb(2, 141, 213),rgb(5, 172, 81))"
     }
   }
-}
+} */
+
+const useStyles = makeStyles({
+  root: {
+    /*
+    MATERIAL UI OFFICIAL METHOD FOR WRITING CSS OVERRIDES:
+
+    this is why it's often better to just create your own components if you want to 
+    make your own design, rather than editing a design framework like MaterialUI. 
+    Overrides are not nearly as trivial as they should be and by the time you master
+    their naming conventions you could have already made your own design system!
+    */
+    //HEADER CONTENT OF FLASHCARD
+    "& .MuiCardHeader-root": {
+      background:
+        "radial-gradient(circle at 17% 1%, rgba(198, 198, 198,0.03) 0%, rgba(198, 198, 198,0.03) 50%,rgba(42, 42, 42,0.03) 50%, rgba(42, 42, 42,0.03) 100%),radial-gradient(circle at 8% 81%, rgba(253, 253, 253,0.03) 0%, rgba(253, 253, 253,0.03) 50%,rgba(36, 36, 36,0.03) 50%, rgba(36, 36, 36,0.03) 100%),radial-gradient(circle at 83% 29%, rgba(164, 164, 164,0.03) 0%, rgba(164, 164, 164,0.03) 50%,rgba(60, 60, 60,0.03) 50%, rgba(60, 60, 60,0.03) 100%),radial-gradient(circle at 96% 62%, rgba(170, 170, 170,0.03) 0%, rgba(170, 170, 170,0.03) 50%,rgba(169, 169, 169,0.03) 50%, rgba(169, 169, 169,0.03) 100%),linear-gradient(338deg, rgb(2, 141, 213),rgb(5, 172, 81))"
+    }, //BOTTOM CONTENT OF FLASHCARD
+    "& .MuiCardContent-root": {
+      background:
+        "linear-gradient(45deg, rgba(86, 86, 86,0.04) 0%, rgba(86, 86, 86,0.04) 50%,rgba(169, 169, 169,0.04) 50%, rgba(169, 169, 169,0.04) 71%,rgba(251, 251, 251,0.04) 71%, rgba(251, 251, 251,0.04) 100%), linear-gradient(45deg, rgba(86, 86, 86,0.04) 0%, rgba(86, 86, 86,0.04) 56%,rgba(169, 169, 169,0.04) 56%, rgba(169, 169, 169,0.04) 67%,rgba(251, 251, 251,0.04) 67%, rgba(251, 251, 251,0.04) 100%), linear-gradient(135deg, rgba(86, 86, 86,0.04) 0%, rgba(86, 86, 86,0.04) 4%,rgba(169, 169, 169,0.04) 4%, rgba(169, 169, 169,0.04) 75%,rgba(251, 251, 251,0.04) 75%, rgba(251, 251, 251,0.04) 100%), linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0))",
+      color: "#EEEEEE",
+      boxShadow: "0 4px 20px rgba(0,0,0, 0.5)",
+      minHeight: "25vh"
+    }, //NORMAL BORDER COLOR
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(255,255,255, 0.5)"
+    }, //HOVER BORDER COLOR
+    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#EEEEEE"
+    }, //FOCUSED BORDER COLOR
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#FFFFFF"
+    }, //INPUT TEXT COLOR
+    "& .MuiOutlinedInput-root": {
+      color: "#EEEEEE"
+    }, //INPUT LABEL TEXT COLOR
+    "& .MuiInputLabel-root": {
+      color: "#EEEEEE"
+    }, //CHECKMARK COLOR
+    "& .MuiButtonBase-root": {
+      color: "white"
+    }, //CHECKMARK ALIGNMENT
+    "& .MuiCardHeader-action": {
+      alignSelf: "auto",
+      marginTop: 0,
+      marginLeft: 8
+    }
+  }
+})
 
 interface FlashCard {
   front: {
@@ -46,6 +100,7 @@ interface FlashCard {
 }
 
 const CreateFlashCard: React.FC = () => {
+  const classes = useStyles()
   const dispatch = useDispatch()
   const { flipped } = useSelector((state: any) => state.flashCards)
   const { register, handleSubmit, errors } = useForm({
@@ -59,7 +114,7 @@ const CreateFlashCard: React.FC = () => {
   }
   const preventFlip = (
     e:
-      | React.MouseEvent<HTMLInputElement, MouseEvent>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
       | React.MouseEvent<HTMLTextAreaElement, MouseEvent>
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => e.stopPropagation()
@@ -73,36 +128,56 @@ const CreateFlashCard: React.FC = () => {
           <Flip isFlipped={flipped} flipDirection="vertical">
             <Card
               key="front"
-              style={styles.card}
+              className={classes.root}
+              /* style={styles.card} */
               onClick={() => dispatch(flipFlashCard())}
             >
               <CardHeader
+                className={classes.root}
                 action={
                   <IconButton
                     type="submit"
                     aria-label="submit"
                     onClick={preventFlip}
                   >
-                    <CheckCircleIcon />
+                    <CheckCircleIcon className={classes.root} />
                   </IconButton>
                 }
                 title={
-                  <input
-                    type="text"
+                  <TextField
+                    className={classes.root}
+                    /* 
+                    For manual style overrides, comment out className and use below method:
+                    
+                    style={styles.card.header}
+                    InputProps={{
+                    style: styles.input.textfield
+                    }}
+                    InputLabelProps={{ style: styles.input.textfield }} 
+                    */
+                    fullWidth
+                    label="Front Title"
+                    variant="outlined"
                     name="front.title"
-                    placeholder="Front Title"
-                    ref={register({ maxLength: 28 })}
                     onClick={preventFlip}
+                    inputRef={register({
+                      maxLength: 40
+                    })}
                   />
                 }
-                style={styles.card.header}
               />
               <CardContent>
                 {
-                  <textarea
+                  <TextField
+                    className={classes.root}
+                    fullWidth
+                    multiline
+                    rows={6}
+                    label="Front Content"
+                    variant="outlined"
                     name="front.content"
-                    placeholder="Front Content"
-                    ref={register({
+                    onClick={preventFlip}
+                    inputRef={register({
                       required: "You Must Write at Least 1 Word",
                       minLength: {
                         value: 3,
@@ -110,17 +185,18 @@ const CreateFlashCard: React.FC = () => {
                       },
                       maxLength: 1000
                     })}
-                    onClick={preventFlip}
                   />
                 }
               </CardContent>
             </Card>
             <Card
               key="back"
-              style={styles.card}
+              className={classes.root}
+              /* style={styles.card} */
               onClick={() => dispatch(flipFlashCard())}
             >
               <CardHeader
+                className={classes.root}
                 action={
                   <IconButton
                     type="submit"
@@ -131,27 +207,47 @@ const CreateFlashCard: React.FC = () => {
                   </IconButton>
                 }
                 title={
-                  <input
-                    type="text"
+                  <TextField
+                    className={classes.root}
+                    /* 
+                    For manual style overrides, comment out className and use below method:
+                    
+                    style={styles.card.header}
+                    InputProps={{
+                    style: styles.input.textfield
+                    }}
+                    InputLabelProps={{ style: styles.input.textfield }} 
+                    */
+                    fullWidth
+                    label="Back Title"
+                    variant="outlined"
                     name="back.title"
-                    placeholder="Back Title"
-                    ref={register({ maxLength: 28 })}
                     onClick={preventFlip}
+                    inputRef={register({
+                      maxLength: 40
+                    })}
                   />
                 }
-                style={styles.card.header}
               />
               <CardContent>
                 {
-                  <textarea
+                  <TextField
+                    className={classes.root}
+                    fullWidth
+                    multiline
+                    rows={6}
+                    label="Back Content"
+                    variant="outlined"
                     name="back.content"
-                    placeholder="Back Content"
-                    ref={register({
+                    onClick={preventFlip}
+                    inputRef={register({
                       required: "You Must Write at Least 1 Word",
-                      minLength: 3,
+                      minLength: {
+                        value: 3,
+                        message: "You Must Write at Least 1 Word"
+                      },
                       maxLength: 1000
                     })}
-                    onClick={preventFlip}
                   />
                 }
               </CardContent>
