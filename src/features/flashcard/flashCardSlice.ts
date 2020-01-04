@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit"
 const flashCards = createSlice({
   name: "flashCards",
   initialState: {
-    total: 2,
     current: 0, // index of current visible card
     flipped: false,
     cards: [
@@ -30,7 +29,7 @@ const flashCards = createSlice({
   },
   reducers: {
     nextFlashCard: state => {
-      if (state.current < state.total - 1) {
+      if (state.current < state.cards.length - 1) {
         if (state.flipped) flashCards.caseReducers.flipFlashCard(state) // call a caseReducer from within a caseReducer
         state.current++ // Mutative code is possible thanks to immer running under the hood
       }
@@ -45,7 +44,7 @@ const flashCards = createSlice({
       state.flipped = !state.flipped
     },
     createFlashCard: (state, action) => {
-      action.payload.id = ++state.total
+      action.payload.id = state.cards.length + 1
       state.cards.push(action.payload) // Flux Standard Actions convention suggests we always call it payload. With RTK you have no choice.
     },
     updateFlashCard: (state, action) => {
@@ -53,7 +52,7 @@ const flashCards = createSlice({
       state.cards[index] = updatedCard
     },
     deleteFlashCard: state => {
-      if (state.total === 1) return // If there's only one card, don't allow it to be deleted
+      if (state.cards.length === 1) return // If there's only one card, don't allow it to be deleted
       if (!state.flipped) flashCards.caseReducers.flipFlashCard(state) // Ensure front of card is displayed when we change cards
       if (state.cards.length - 1 === state.current) {
         // If looking at the last card, move back 1 card before deleting so we don't reference an undefined array position
@@ -62,14 +61,13 @@ const flashCards = createSlice({
       } else {
         state.cards.splice(state.current, 1)
       }
-      state.total--
     }
   }
 })
 
 /* const asyncNextFlashCard = state => {
   return async dispatch => {
-    if (state.current < state.total - 1) {
+    if (state.current < state.cards.legnth - 1) {
       if (state.flipped) flashCards.caseReducers.flipFlashCard(state) // call a caseReducer from within a caseReducer
       setTimeout(state => state.current++, 1000) // Mutative code is possible thanks to immer running under the hood
     }
