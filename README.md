@@ -17,3 +17,6 @@ Update is not yet implemented.
 ### Delete
 
 Delete any flash card by clicking the trash icon.
+
+License: Attribution-NonCommercial-ShareAlike 4.0 International
+https://creativecommons.org/licenses/by-nc-sa/4.0/

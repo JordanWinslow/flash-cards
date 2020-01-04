@@ -1,3 +1,9 @@
+/*
+Author: Jordan Winslow
+Website: https://JordanWinslow.dev
+License: Attribution-NonCommercial-ShareAlike 4.0 International
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+*/
 import React from "react"
 import Flip from "react-card-flip"
 import { useDispatch, useSelector } from "react-redux"
