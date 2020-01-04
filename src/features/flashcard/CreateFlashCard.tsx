@@ -117,7 +117,6 @@ const CreateFlashCard: React.FC = () => {
   const preventFlip = (
     e:
       | React.MouseEvent<HTMLDivElement, MouseEvent>
-      | React.MouseEvent<HTMLTextAreaElement, MouseEvent>
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => e.stopPropagation()
 
@@ -131,6 +130,7 @@ const CreateFlashCard: React.FC = () => {
             <Card
               key="front"
               className={classes.root}
+              elevation={24} // MUI Box Shadow
               /* style={styles.card} */
               onClick={() => dispatch(flipFlashCard())}
             >
@@ -194,6 +194,7 @@ const CreateFlashCard: React.FC = () => {
             <Card
               key="back"
               className={classes.root}
+              elevation={24} // MUI Box Shadow
               /* style={styles.card} */
               onClick={() => dispatch(flipFlashCard())}
             >

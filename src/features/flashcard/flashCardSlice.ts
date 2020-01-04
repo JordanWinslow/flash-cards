@@ -48,9 +48,10 @@ const flashCards = createSlice({
       state.cards.push(action.payload) // Flux Standard Actions convention suggests we always call it payload. With RTK you have no choice.
       state.current = state.cards.length - 1 // set the new card visible immediately
     },
+    // See if you can implement this somewhere in the program by adding an edit button to each card!
     updateFlashCard: (state, action) => {
-      const { index, updatedCard } = action.payload
-      state.cards[index] = updatedCard
+      const { index, updatedCardInfo } = action.payload
+      state.cards[index] = updatedCardInfo
     },
     deleteFlashCard: state => {
       if (state.cards.length === 1) return // If there's only one card, don't allow it to be deleted
