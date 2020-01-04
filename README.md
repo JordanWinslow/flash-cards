@@ -1,6 +1,6 @@
 ## Flash Cards
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4efe39d6-4646-4355-853e-3fa2ecd10c24/deploy-status)](https://app.netlify.com/sites/redux-flash-cards/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4efe39d6-4646-4355-853e-3fa2ecd10c24/deploy-status)](https://redux-flash-cards.netlify.com)
 
 ### Create
 
