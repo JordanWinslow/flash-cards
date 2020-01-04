@@ -13,6 +13,7 @@ import CreateFlashCard from "./features/flashcard/CreateFlashCard"
 
 import { Grid } from "@material-ui/core"
 import { Center } from "./components/Center"
+import Header from "./components/Header"
 
 /**********************APPLICATION**********************/
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Route exact path="/">
         <Center>
           <Grid item xs={10} sm={8} md={6} xl={4}>
