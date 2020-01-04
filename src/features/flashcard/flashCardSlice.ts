@@ -11,7 +11,7 @@ const flashCards = createSlice({
         id: "0",
         front: {
           title: "Question 1",
-          content: "What is Redux Toolkit?"
+          content: "What is Redux Toolkit? (click anywhere on the card to flip)"
         },
         back: {
           title: "",
@@ -22,8 +22,16 @@ const flashCards = createSlice({
       {
         // State is an Array of Flashcards With a Front and Back. The id is the array index
         id: "1",
-        front: { title: "Question 2", content: "Front of Flashcard" },
-        back: { title: "Answer 2", content: "Back of Flashcard" }
+        front: {
+          title: "About This Project",
+          content:
+            "This project was built with React, React-Router, Redux, Redux Toolkit, React-Redux & a Custom Designed MaterialUI Theme"
+        },
+        back: {
+          title: "More info",
+          content:
+            "Click the GitHub icon in the top right of the screen to view the source code!"
+        }
       }
     ]
   },
