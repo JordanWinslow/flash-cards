@@ -8,6 +8,7 @@ import PreviousIcon from "@material-ui/icons/ArrowBackIos"
 import NextIcon from "@material-ui/icons/ArrowForwardIos"
 import AddIcon from "@material-ui/icons/AddToPhotos"
 import CancelIcon from "@material-ui/icons/Cancel"
+import { useSelector } from "react-redux"
 
 const useStyles = makeStyles({
   displayMode: {

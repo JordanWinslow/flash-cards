@@ -1,4 +1,4 @@
-import React from "react"
+/* import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 import { createFlashCard, flipFlashCard } from "./flashCardSlice"
@@ -63,3 +63,6 @@ const CardList: React.FC = () => {
 }
 
 export default CardList
+ */
+let nothing = ""
+export default nothing

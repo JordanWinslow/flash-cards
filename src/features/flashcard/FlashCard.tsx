@@ -88,7 +88,7 @@ const FlashCard: React.FC<FlashCardProps> = ({ id, front, back }) => {
   const { flipped } = useSelector((state: any) => state.flashCards)
 
   return (
-    <div id={`Flash Card ${id + 1}`}>
+    <div id={`${id + 1}`}>
       <Flip isFlipped={flipped} flipDirection="vertical">
         <Card
           className={classes.root}
