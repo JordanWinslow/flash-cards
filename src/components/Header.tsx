@@ -26,13 +26,13 @@ const Header = () => {
           <IconButton>
             <img
               src={JWLogo}
-              alt="Logo by Jordan Winslow"
+              alt="Logo Link to Jordan Winslow's Portfolio"
               style={{ width: "3.5rem" }}
             />
           </IconButton>
         </a>
         <Typography variant="body2" component="h1">
-          Flash Cards App by Jordan Winslow
+          Flash Cards | Jordan Winslow
         </Typography>
         <a
           href="https://github.com/JordanWinslow/flash-cards"
