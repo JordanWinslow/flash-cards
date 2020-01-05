@@ -8,7 +8,6 @@ import PreviousIcon from "@material-ui/icons/ArrowBackIos"
 import NextIcon from "@material-ui/icons/ArrowForwardIos"
 import AddIcon from "@material-ui/icons/AddToPhotos"
 import CancelIcon from "@material-ui/icons/Cancel"
-import { useSelector } from "react-redux"
 
 const useStyles = makeStyles({
   displayMode: {
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
   },
   createMode: {
     position: "absolute",
-    bottom: 0,
+    top: "calc(100% - 56px)",
     width: "100%"
   }
 })
