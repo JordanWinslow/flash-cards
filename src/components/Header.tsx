@@ -68,7 +68,9 @@ const Header = () => {
           </IconButton>
         </a>
         <Typography variant="body2" component="h1">
-          Flash Cards | Jordan Winslow
+          {window.innerWidth < 600
+            ? "Flash Cards"
+            : "Flash Cards | Jordan Winslow"}
         </Typography>
         <a
           href="https://github.com/JordanWinslow/flash-cards"

@@ -10,8 +10,13 @@ import AddIcon from "@material-ui/icons/AddToPhotos"
 import CancelIcon from "@material-ui/icons/Cancel"
 
 const useStyles = makeStyles({
-  root: {
+  displayMode: {
     position: "fixed",
+    bottom: 0,
+    width: "100%"
+  },
+  createMode: {
+    position: "absolute",
     bottom: 0,
     width: "100%"
   }
@@ -26,13 +31,13 @@ export default function SimpleBottomNavigation({
   prevCard,
   nextCard
 }: NavProps) {
-  const classes = useStyles()
+  const style = useStyles()
   const history = useHistory()
 
   return (
     <>
-      {!prevCard && ( // if no props are passed, we are in "Add New Card" mode
-        <BottomNavigation showLabels className={classes.root}>
+      {!prevCard && ( // if no props are passed, we are in create mode
+        <BottomNavigation showLabels className={style.createMode}>
           <BottomNavigationAction
             label="Cancel"
             icon={<CancelIcon />}
@@ -40,8 +45,8 @@ export default function SimpleBottomNavigation({
           />
         </BottomNavigation>
       )}
-      {prevCard && (
-        <BottomNavigation showLabels className={classes.root}>
+      {prevCard && ( // if props exist, we are in display mode
+        <BottomNavigation showLabels className={style.displayMode}>
           <BottomNavigationAction
             label="Previous"
             icon={<PreviousIcon />}
