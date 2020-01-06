@@ -1,5 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+interface CardSideState {
+  /*Title to be displayed on front of flash card in header*/
+  title: string
+  /*Content such as a question, a word to be defined, etc.*/
+  content: string
+}
+
+export interface CardState {
+  id: number
+  front: CardSideState
+  back: CardSideState
+}
+
+interface SliceState {
+  current: number
+  flipped: boolean
+  cards: CardState[]
+};
+
 const flashCards = createSlice({
   name: "flashCards",
   initialState: {
@@ -8,7 +27,7 @@ const flashCards = createSlice({
     cards: [
       {
         // State is an Array of Flashcards With a Front and Back. The id is the array index
-        id: "0",
+        id: 0,
         front: {
           title: "Question 1",
           content: "What is Redux Toolkit? (click anywhere on the card to flip)"
@@ -21,7 +40,7 @@ const flashCards = createSlice({
       },
       {
         // State is an Array of Flashcards With a Front and Back. The id is the array index
-        id: "1",
+        id: 1,
         front: {
           title: "About This Project",
           content:
@@ -34,7 +53,7 @@ const flashCards = createSlice({
         }
       }
     ]
-  },
+  } as SliceState,
   reducers: {
     nextFlashCard: state => {
       if (state.current < state.cards.length - 1) {

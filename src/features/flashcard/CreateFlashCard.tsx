@@ -91,22 +91,6 @@ const useStyles = makeStyles({
   }
 })
 
-export interface FlashCard {
-  id: string
-  front: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-  back: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-}
-
 const CreateFlashCard: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
