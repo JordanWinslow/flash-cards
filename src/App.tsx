@@ -22,10 +22,13 @@ import { Grid } from "@material-ui/core"
 import { Center } from "./components/Center"
 import Header from "./components/Header"
 
+import { RootState } from "./redux/store" // this is a Type declaration
+
 /**********************APPLICATION**********************/
 const App: React.FC = () => {
   const dispatch = useDispatch()
-  const { current, cards } = useSelector((state: any) => state.flashCards)
+  const cards = useSelector((state: RootState) => state.flashCards.cards)
+  const current = useSelector((state: RootState) => state.flashCards.current)
 
   return (
     <>

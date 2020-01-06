@@ -25,6 +25,8 @@ import {
 import { Center } from "../../components/Center"
 import CheckCircleIcon from "@material-ui/icons/CheckCircle"
 
+import { RootState } from "../../redux/store" // Type declaration
+
 /* 
 MANUALLY OVERRIDING THE STYLES IS LESS VERBOSE BUT REQUIRES PASSING IN InputProps & InputLabelProps AND WILL NOT ALLOW FINE-TUNING:
 
@@ -89,7 +91,8 @@ const useStyles = makeStyles({
   }
 })
 
-interface FlashCard {
+export interface FlashCard {
+  id: string
   front: {
     /*Title to be displayed on front of flash card in header*/
     title?: string
@@ -107,13 +110,13 @@ interface FlashCard {
 const CreateFlashCard: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { flipped } = useSelector((state: any) => state.flashCards)
+  const { flipped } = useSelector((state: RootState) => state.flashCards)
   const { register, handleSubmit, errors } = useForm({
     validateCriteriaMode: "all"
   })
   const history = useHistory()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Record<string, any>) => {
     dispatch(createFlashCard(data))
     history.goBack()
   }
