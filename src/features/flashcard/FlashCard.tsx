@@ -8,7 +8,7 @@ import React from "react"
 import Flip from "react-card-flip"
 import { useDispatch, useSelector } from "react-redux"
 
-import { flipFlashCard, deleteFlashCard } from "./flashCardSlice"
+import { flipFlashCard, deleteFlashCard, CardState } from "./flashCardSlice"
 
 import {
   Card,
@@ -18,6 +18,7 @@ import {
   makeStyles
 } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
+import { RootState } from "../../redux/store"
 
 /* const styles = {
   card: {
@@ -66,26 +67,10 @@ const useStyles = makeStyles({
   }
 })
 
-interface FlashCardProps {
-  id: string
-  front: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-  back: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-}
-
-const FlashCard: React.FC<FlashCardProps> = ({ id, front, back }) => {
+const FlashCard: React.FC<CardState> = ({ id, front, back }) => {
   const classes = useStyles() // MATERIAL UI STYLING
   const dispatch = useDispatch()
-  const { flipped } = useSelector((state: any) => state.flashCards)
+  const { flipped } = useSelector((state: RootState) => state.flashCards)
 
   return (
     <div id={`${id + 1}`}>

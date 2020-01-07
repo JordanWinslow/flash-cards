@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 import { useHistory } from "react-router-dom"
 
-import { flipFlashCard, createFlashCard } from "./flashCardSlice"
+import { flipFlashCard, createFlashCard, CardState } from "./flashCardSlice"
 
 import {
   Card,
@@ -91,32 +91,16 @@ const useStyles = makeStyles({
   }
 })
 
-export interface FlashCard {
-  id: string
-  front: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-  back: {
-    /*Title to be displayed on front of flash card in header*/
-    title?: string
-    /*Content such as a question, a word to be defined, etc.*/
-    content: string
-  }
-}
-
 const CreateFlashCard: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const { flipped } = useSelector((state: RootState) => state.flashCards)
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors } = useForm<CardState>({
     validateCriteriaMode: "all"
   })
   const history = useHistory()
 
-  const onSubmit = (data: Record<string, any>) => {
+  const onSubmit = (data: CardState) => {
     dispatch(createFlashCard(data))
     history.goBack()
   }
